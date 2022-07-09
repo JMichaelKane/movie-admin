@@ -8,6 +8,9 @@ const routes: Array<RouteRecordRaw> = [
 		path: "/",
 		name: "user",
 		component: () => import("../components/User.vue"),
+		redirect: {
+			name:"panel",
+		},
 		children: [
 			{
 				path: "panel",
