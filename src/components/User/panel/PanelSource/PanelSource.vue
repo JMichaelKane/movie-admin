@@ -113,6 +113,7 @@ const columns = ref<DataTableColumns<Source>>([
 									size: "small",
 									onClick: () => {
 										SourceReget(row.id).then(() => {
+											GetSources();
 											notification["success"]({
 												duration: 2000,
 												content: "重新采集",
