@@ -34,6 +34,7 @@
 								show-password-on="mousedown"
 								placeholder="请输入密码"
 								:maxlength="8"
+								@keyup.enter="handleClick"
 							/>
 						</div>
 						<div class="form">
