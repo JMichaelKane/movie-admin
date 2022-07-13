@@ -1,15 +1,19 @@
 <script setup lang="ts">
-	// import { useRouter } from "vue-router";
-	// import { baseFetch } from "../composables/User/http";
-	import { Login } from "../composables/User/api";
-	const loading = ref<boolean>(false);
-	const account = ref<string>("");
-	const password = ref<string>("");
-	// const router = useRouter(); // 路由
-	function handleClick() {
-		loading.value = true;
-		Login(account.value, password.value);
-	}
+import { useNotification } from "naive-ui";
+// import { useRouter } from "vue-router";
+// import { baseFetch } from "../composables/User/http";
+import { Login } from "../composables/User/api";
+const loading = ref<boolean>(false);
+const account = ref<string>("");
+const password = ref<string>("");
+// const router = useRouter(); // 路由
+window.$notification = useNotification();
+function handleClick() {
+	loading.value = true;
+	Login(account.value, password.value).catch(() => {
+		loading.value = false;
+	});
+}
 </script>
 
 <template>
@@ -61,13 +65,13 @@
 </template>
 
 <style>
-	.card {
-		height: 100vh;
-	}
-	.form {
-		margin-bottom: 10px;
-	}
-	.button-block {
-		width: 100%;
-	}
+.card {
+	height: 100vh;
+}
+.form {
+	margin-bottom: 10px;
+}
+.button-block {
+	width: 100%;
+}
 </style>
