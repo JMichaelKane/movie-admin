@@ -35,7 +35,13 @@
 	];
 	const data = ref<Class[]>([]);
 
-	getSourceDetail(Number(route.params.id), data);
+	
+
+onMounted(() => {
+	watchPostEffect(()=>{
+		getSourceDetail(Number(route.params.id), data);
+	})
+})
 
 	const columns = ref<DataTableColumns<Class>>([
 		{
