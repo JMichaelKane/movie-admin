@@ -16,7 +16,7 @@ function global() {
 }
 
 function Login(account: string, password: string) {
-	baseFetch("/user/login", {
+	return baseFetch("/user/login", {
 		method: "POST",
 		handle: false,
 		body: {
@@ -54,7 +54,12 @@ function GetMovies_panel() {
 	return GetMovies(20, 1, movies);
 }
 
-async function GetMovies(num: number, pg: number, movies: Ref<Movie[]>, pgCount?: Ref<number>) {
+async function GetMovies(
+	num: number,
+	pg: number,
+	movies: Ref<Movie[]>,
+	pgCount?: Ref<number>
+) {
 	const data: any = await baseFetch("/user/list", {
 		method: "POST",
 		handle: true,
@@ -368,6 +373,17 @@ function UpdateCollectInterval(param: number) {
 	});
 }
 
+// 重新采集源
+function SourceReget(param: number) {
+	return baseFetch("/user/source/reGet", {
+		method: "POST",
+		handle: false,
+		body: {
+			id: param,
+		},
+	});
+}
+
 export {
 	Login,
 	LogOut,
@@ -392,4 +408,5 @@ export {
 	DistributeClass,
 	GetCollectInterval,
 	UpdateCollectInterval,
+	SourceReget,
 };

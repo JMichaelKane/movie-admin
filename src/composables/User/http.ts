@@ -83,7 +83,11 @@ function baseFetch(url: string, options: Option) {
 			fetch(base_url + url, options)
 				.then(async (res: Response) => {
 					// response interceptors 状态码拦截，对应异常状态吗do something
-					if (!/^(2|3)\d{2}$/.test(String(res.status) /* 数字转字符串 */)) {
+					if (
+						!/^(2|3)\d{2}$/.test(
+							String(res.status) /* 数字转字符串 */
+						)
+					) {
 						switch (res.status) {
 							case 401: //当前用户需要验证（一般是未登陆）
 								window.$notification["warning"]({
@@ -94,10 +98,22 @@ function baseFetch(url: string, options: Option) {
 								router.push({ name: "login" });
 								break; //一般可以弹出遮盖层，或者回到登陆页面
 							case 403: // 服务器理解请求，但是拒绝执行，一般是token，session过期
-								console.log("登录错误");
+								console.log("登陆错误");
+								window.$notification["error"]({
+									duration: 2000,
+									content: "错误",
+									meta: "登录错误，请检查账户或者密码",
+								});
 								break;
 							case 404: // 找不到页面(请求失败，资源在服务器上未找到)，可以给一个友好的提示
 								break;
+							case 500:
+								window.$notification["warning"]({
+									duration: 2000,
+									content: "警告",
+									meta: "发生了某些错误，详情日志请查看控制台！",
+								});
+								console.log("500错误，发生错误为", res.text);
 						}
 						return Promise.reject(res);
 					}
