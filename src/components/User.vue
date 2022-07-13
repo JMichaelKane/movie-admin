@@ -1,10 +1,10 @@
 <script setup lang="ts">
-	import { useNotification } from "naive-ui";
-	import { global } from "../composables/User/api";
-	window.$notification = useNotification();
-	onBeforeMount(() => {
-		global();
-	});
+import { useNotification } from "naive-ui";
+import { global } from "../composables/User/api";
+window.$notification = useNotification();
+onBeforeMount(() => {
+	global();
+});
 </script>
 
 <template>
@@ -28,8 +28,8 @@
 </template>
 
 <style>
-	.panel {
-		height: 100vh;
-		background-color: #f6f9f8;
-	}
+.panel {
+	height: 100vh;
+	background-color: #f6f9f8;
+}
 </style>
