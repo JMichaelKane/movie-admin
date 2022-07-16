@@ -6,11 +6,12 @@ import { Login } from "../composables/User/api";
 const loading = ref<boolean>(false);
 const account = ref<string>("");
 const password = ref<string>("");
+const long = ref<boolean>(false);
 // const router = useRouter(); // 路由
 window.$notification = useNotification();
 function handleClick() {
 	loading.value = true;
-	Login(account.value, password.value).catch(() => {
+	Login(account.value, password.value, long.value).catch(() => {
 		loading.value = false;
 	});
 }
@@ -43,7 +44,11 @@ function handleClick() {
 						</div>
 						<div class="form">
 							<n-space justify="space-between">
-								<n-checkbox size="large" label="记住密码" />
+								<n-checkbox
+									v-model:checked="long"
+									size="large"
+									label="记住密码"
+								/>
 								<n-button text> 忘记密码 </n-button>
 							</n-space>
 						</div>

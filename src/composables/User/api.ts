@@ -15,13 +15,14 @@ function global() {
 	}
 }
 
-function Login(account: string, password: string) {
+function Login(account: string, password: string, long: boolean) {
 	return baseFetch("/user/login", {
 		method: "POST",
 		handle: false,
 		body: {
 			account: account,
 			password: password,
+			long: long,
 		},
 	}).then(async () => {
 		await GetMovieNum();
