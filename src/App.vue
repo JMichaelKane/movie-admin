@@ -1,18 +1,21 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { zhCN, dateZhCN } from "naive-ui";
+</script>
 
 <template>
-	<n-scrollbar style="max-height: 100vh">
-		<n-notification-provider>
-			<!-- 通知 -->
-			<n-dialog-provider>
-				<!-- 对话框 -->
-				<n-message-provider>
-					<!-- 信息 -->
-					<router-view />
-				</n-message-provider>
-			</n-dialog-provider>
-		</n-notification-provider>
-	</n-scrollbar>
+	<n-config-provider :locale="zhCN" :date-locale="dateZhCN">
+		<n-scrollbar style="max-height: 100vh">
+			<n-notification-provider>
+				<!-- 通知 -->
+				<n-dialog-provider>
+					<!-- 对话框 -->
+					<n-message-provider>
+						<!-- 信息 -->
+						<router-view />
+					</n-message-provider>
+				</n-dialog-provider>
+			</n-notification-provider> </n-scrollbar
+	></n-config-provider>
 </template>
 
 <style>
